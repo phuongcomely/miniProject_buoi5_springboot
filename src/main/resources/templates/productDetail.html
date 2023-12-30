@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"   th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>CHI TIẾT SẢN PHAM</h1>
+    <div th:if="${product != null}" class="product-container">
+        <h2 th:text="${product.name}"></h2>
+        <img th:src="${product.thumbnail}" alt="Product Image" style="max-width: 100%;">
+        <p th:text="${product.description}"></p>
+
+        <p>
+        <span th:if="${product.priceDiscount != null}"
+              th:text="${'Original Price: $' + product.price}"
+              class="price"></span>
+            <span th:text="${'Discounted Price: $' + product.priceDiscount}"></span>
+        </p>
+
+        <p th:text="${'Rating: ' + product.rating}"></p>
+    </div>
+</body>
+</html>

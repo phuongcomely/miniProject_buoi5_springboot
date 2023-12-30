@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"   th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>DANH SÁCH SẢN PHẨM </h1>
+    <div th:each="p : ${product}" class="product-container">
+        <h3 th:text="${p.name}"></h3>
+        <img th:src="${p.thumbnail}" alt="Product Image" class="product-image">
+        <p th:text="${p.description}"></p>
+        <p th:if="${p.priceDiscount != null}">
+            <span th:text="${'Price: $' + p.price}"></span>
+            <span th:text="${'Discounted Price: $' + p.priceDiscount}"></span>
+            <del th:text="${'Original Price: $' + p.price}"></del>
+        </p>
+        <p th:unless="${p.priceDiscount != null}" th:text="${'Price: $' + p.price}"></p>
+        <p th:text="${'Rating: ' + p.rating}"></p>
+        <td>
+            <a th:href="@{/product/{id} (id=${p.id})}">Xem chi tiết</a>
+        </td>
+    </div>
+</body>
+</html>
